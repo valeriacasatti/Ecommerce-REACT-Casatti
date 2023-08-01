@@ -1,0 +1,56 @@
+.checkout {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-inline: 5rem;
+}
+
+.checkout img {
+  margin-top: 8rem;
+  height: 30rem;
+}
+
+/* TITLE */
+.checkoutTitle {
+  margin-top: 10rem;
+}
+
+.checkoutTitle h2 {
+  text-transform: uppercase;
+  font-size: xx-large;
+}
+
+/* FORM */
+form {
+  padding-block: 2rem;
+}
+
+.checkoutBox Button {
+  font-weight: bold;
+  font-size: large;
+}
+
+/* PURCHASE COMPLETED */
+.endPurchase {
+  margin-top: 9rem;
+  margin-inline: 10rem;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  text-align: left;
+}
+
+.endPurchase img {
+  height: 30rem;
+}
+
+.endPurchase h2 {
+  text-transform: uppercase;
+  padding-bottom: 1rem;
+}
+
+.endPurchase Button {
+  margin-block: 1rem;
+  font-weight: bold;
+  font-size: large;
+}

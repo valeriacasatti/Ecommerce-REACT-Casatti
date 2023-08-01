@@ -1,0 +1,13 @@
+.cartEmpty {
+  padding-top: 10rem;
+  text-align: center;
+}
+
+.cartEmpty h2 {
+  text-transform: uppercase;
+}
+
+.cartEmpty Button {
+  margin-top: 2rem;
+  font-weight: bold;
+}

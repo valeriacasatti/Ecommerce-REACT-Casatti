@@ -1,0 +1,33 @@
+.frontPage {
+  margin-top: 12rem;
+  margin-bottom: 6rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+img {
+  height: 27rem;
+}
+
+.frontPageText {
+  padding-left: 3rem;
+  width: 40%;
+}
+
+.frontPageText h2 {
+  text-transform: uppercase;
+  font-weight: bolder;
+  font-size: xx-large;
+  padding-bottom: 3rem;
+}
+
+.frontPageText p {
+  font-size: large;
+}
+
+.frontPageText Button {
+  margin-top: 3rem;
+  font-weight: bold;
+  font-size: large;
+}

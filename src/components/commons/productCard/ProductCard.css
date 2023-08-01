@@ -1,0 +1,17 @@
+.itemList {
+  padding-inline: 40px;
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+
+.card {
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+}
+
+.card Button {
+  font-weight: bold;
+  font-size: medium;
+}

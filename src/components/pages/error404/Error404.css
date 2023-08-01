@@ -1,0 +1,24 @@
+.error404 {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: larger;
+  text-align: center;
+}
+
+.error404 h1 {
+  text-transform: uppercase;
+  color: #f50057;
+  padding: 2rem;
+}
+
+.error404 h4 {
+  text-transform: uppercase;
+  color: #f50057;
+}
+
+.error404 h6 {
+  color: #f50057;
+  margin-bottom: 2rem;
+}

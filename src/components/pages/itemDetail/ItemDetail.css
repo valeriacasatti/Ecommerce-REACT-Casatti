@@ -1,0 +1,43 @@
+.itemDetail {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 10rem;
+  margin-inline: 5rem;
+}
+
+.itemDetail img {
+  height: 500px;
+}
+
+.itemDetailRight {
+  width: 75vh;
+}
+
+.itemDetail h2 {
+  margin-top: 2rem;
+  padding-block: 3rem;
+  font-size: xx-large;
+  text-transform: uppercase;
+  border-top: 1px solid aliceblue;
+}
+
+.itemDetail h3 {
+  margin-bottom: 3rem;
+  font-size: x-large;
+}
+
+.itemDetail h4 {
+  text-transform: uppercase;
+  border-top: 1px solid aliceblue;
+  padding-top: 3rem;
+  margin-block: 1rem;
+}
+
+.itemDetail h6 {
+  font-size: large;
+}
+
+.goToCart Button {
+  margin-top: 2rem;
+  font-weight: bold;
+}

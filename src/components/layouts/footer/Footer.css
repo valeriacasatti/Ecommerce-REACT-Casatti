@@ -1,0 +1,23 @@
+footer {
+  display: flex;
+  justify-content: space-around;
+  margin-block: 2rem;
+  padding-block: 2rem;
+  border-block: 1px solid aliceblue;
+}
+.ulTitle {
+  text-transform: uppercase;
+  font-size: large;
+}
+
+li {
+  margin-block-start: 10px;
+}
+
+.dashboard {
+  text-decoration: none;
+}
+
+.dashboard li:hover {
+  color: #e91e63;
+}

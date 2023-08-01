@@ -1,0 +1,48 @@
+.cart {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 8rem;
+  margin-bottom: 2rem;
+  margin-inline: 40px;
+  padding-inline: 4rem;
+}
+
+.cart h4 {
+  text-transform: uppercase;
+}
+
+.cartTitle h5 {
+  font-size: smaller;
+}
+
+.cartTitle h2 {
+  text-transform: uppercase;
+  font-size: xx-large;
+}
+
+.cart Button {
+  font-weight: bold;
+}
+
+.totalCart {
+  margin-inline: 40px;
+  padding-inline: 4rem;
+}
+
+.totalCart .total {
+  border-bottom: 1px solid white;
+  text-transform: uppercase;
+  font-size: xx-large;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+}
+
+.totalCart h4 {
+  margin-top: 1rem;
+}
+
+.totalCart Button {
+  font-size: large;
+  font-weight: bold;
+  margin-top: 2rem;
+}
