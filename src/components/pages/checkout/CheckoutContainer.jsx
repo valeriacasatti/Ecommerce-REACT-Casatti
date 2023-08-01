@@ -15,7 +15,6 @@ import {
 
 const CheckoutContainer = () => {
   const [orderId, setOrderId] = useState("");
-  console.log(orderId);
   const { clearCart, cart, getTotalPrice } = useContext(CartContext);
 
   let total = getTotalPrice();
