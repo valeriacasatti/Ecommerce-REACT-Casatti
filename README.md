@@ -1,8 +1,24 @@
-# React + Vite
+# E-COMMERCE React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This app was created for academic purposes, as a final project of Coderhouse's React course.
+Simulates an e-commerce with the following functionalities:
 
-Currently, two official plugins are available:
+- Filter products by category.
+- View detail of each product and add to a shopping cart.
+- Empty shopping cart.
+- View products in shopping cart.
+- Calculate shopping cart total.
+- Store with Firebase:
+  add & manipulate products, save purchase orders with user data, products & amounts.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## used
+
+- Formik
+- Yup
+- react-router-dom
+
+### also used:
+
+- Material UI
+- react Toastify
+- sweetalert2
