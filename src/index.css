@@ -9,6 +9,24 @@
   font-family: "Roboto", sans-serif;
 }
 
+*::selection {
+  color: #e91e63;
+  background-color: #222222;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 237px - 88px);
+}
+
 button {
   border: none;
 }

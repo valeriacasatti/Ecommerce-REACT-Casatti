@@ -1,10 +1,11 @@
 footer {
   display: flex;
   justify-content: space-around;
-  margin-block: 2rem;
+  margin-top: 2rem;
   padding-block: 2rem;
-  border-block: 1px solid aliceblue;
+  border-top: 1px solid aliceblue;
 }
+
 .ulTitle {
   text-transform: uppercase;
   font-size: large;
@@ -14,10 +15,10 @@ li {
   margin-block-start: 10px;
 }
 
-.dashboard {
+a {
   text-decoration: none;
 }
 
-.dashboard li:hover {
+a li:hover {
   color: #e91e63;
 }

@@ -1,19 +1,14 @@
-.cartEmpty {
+.dashboardContainer {
   flex-grow: 1;
-  padding-top: 88.8px;
+  padding-top: 120.8px;
   display: flex;
   flex-direction: column;
-  text-align: center;
   justify-content: center;
   align-items: center;
+  gap: 1rem;
 }
 
-.cartEmpty h2 {
-  text-transform: uppercase;
-}
-
-.cartEmpty a {
-  margin-top: 1rem;
+.dashboardContainer button {
   font-weight: bold;
   font-size: large;
 }

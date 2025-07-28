@@ -1,5 +1,6 @@
 import Checkout from "./Checkout";
 import { useFormik } from "formik";
+import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import Swal from "sweetalert2";
 import { useContext, useState } from "react";
@@ -14,76 +15,120 @@ import {
 } from "firebase/firestore";
 
 const CheckoutContainer = () => {
-  const [orderId, setOrderId] = useState("");
   const { clearCart, cart, getTotalPrice } = useContext(CartContext);
 
+  const navigate = useNavigate();
   let total = getTotalPrice();
 
-  const { handleSubmit, handleChange, errors } = useFormik({
+  const [processingPayment, setProcessingPayment] = useState(false);
+
+  const handlePaymentSuccess = (id) => {
+    setTimeout(() => {
+      setProcessingPayment(false);
+      Swal.fire({
+        backdrop: `rgba(0,0,0,0.8)`,
+        background: "#121212",
+        color: "#f5f5f5",
+        title: "successful payment!",
+        footer: "we'll send the receipt to your email",
+        icon: "success",
+        iconColor: "#00c42e",
+        confirmButtonColor: "#00c42e",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          clearCart();
+          localStorage.setItem("orderId", id);
+          navigate("/");
+        }
+      });
+    }, 1000);
+  };
+
+  const { handleSubmit, handleChange, values, errors } = useFormik({
     initialValues: {
       name: "",
+      lastname: "",
       email: "",
-      card: "",
-      expiration: "",
-      securityCode: "",
+      phone: "",
+      deliveryMethod: "",
+      country: "",
+      city: "",
       address: "",
+      postalCode: "",
+      card: "",
+      expMonth: "",
+      expYear: "",
+      securityCode: "",
+      cardHolder: "",
     },
-    onSubmit: (data) => {
+    onSubmit: async (data) => {
+      setProcessingPayment(true);
+
       let order = {
         buyer: data,
         items: cart,
         total,
         date: serverTimestamp(),
       };
+
       const ordersCollection = collection(db, "orders");
-      addDoc(ordersCollection, order).then((res) => setOrderId(res.id));
 
-      cart.forEach((product) => {
-        updateDoc(doc(db, "products", product.id), {
-          stock: product.stock - product.quantity,
+      try {
+        const docRef = await addDoc(ordersCollection, order);
+
+        // update stock
+        cart.forEach((product) => {
+          updateDoc(doc(db, "products", product.id), {
+            stock: product.stock - product.quantity,
+          });
         });
-      });
-    },
-    validationSchema: Yup.object({
-      name: Yup.string().required(),
-      email: Yup.string().required().email(),
-      card: Yup.number().required(),
-      expiration: Yup.string().required(),
-      securityCode: Yup.number().required(),
-      address: Yup.string().required(),
-    }),
-    validateOnChange: false,
-  });
 
-  const pay = () => {
-    {
-      setTimeout(() => {
+        handlePaymentSuccess(docRef.id);
+      } catch (error) {
+        setProcessingPayment(false);
+
+        console.error("Error processing order or updating stock: " + error);
         Swal.fire({
           backdrop: `rgba(0,0,0,0.8)`,
           background: "#121212",
           color: "#f5f5f5",
-          title: "successful payment!",
-          footer: "we'll send the receipt to your email",
-          icon: "success",
-          iconColor: "#00c42e",
-          confirmButtonColor: "#00c42e",
-        }).then((result) => {
-          if (result.isConfirmed) {
-            clearCart();
-          }
+          title: "oops...",
+          footer: "there was an error processing your order, please try again.",
+          icon: "error",
+          iconColor: "#e91e63",
+          confirmButtonColor: "#e91e63",
         });
-      }, 1000);
-    }
-  };
+      }
+    },
+    validationSchema: Yup.object({
+      name: Yup.string().required("your name is required"),
+      lastname: Yup.string().required("your last name is required"),
+      email: Yup.string().required("your email is required").email(),
+      phone: Yup.number().required("your phone number is required"),
+      country: Yup.string().required("your country is required"),
+      city: Yup.string().required("your city is required"),
+      address: Yup.string().required("your address is required"),
+      postalCode: Yup.string().required("your postal code is required"),
+      card: Yup.number().required("your card number is required"),
+      expMonth: Yup.number().required("the expiration month is required"),
+      expYear: Yup.number().required("the expiration year is required"),
+      securityCode: Yup.number().required("the security code is required"),
+      cardHolder: Yup.string().required("the name on the card is required"),
+    }),
+    validateOnChange: true,
+    validateOnBlur: true,
+  });
 
   return (
     <>
       <Checkout
+        cart={cart}
         handleSubmit={handleSubmit}
         handleChange={handleChange}
+        values={values}
         errors={errors}
-        pay={pay}
-        orderId={orderId}
+        total={total}
+        processingPayment={processingPayment}
       />
     </>
   );

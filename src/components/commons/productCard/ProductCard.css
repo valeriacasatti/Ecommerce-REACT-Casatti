@@ -1,17 +1,43 @@
-.itemList {
-  padding-inline: 40px;
-  width: 100%;
-  display: flex;
-  justify-content: space-evenly;
-  flex-wrap: wrap;
-}
-
 .card {
   margin-bottom: 1rem;
   padding-bottom: 1rem;
+  width: 390px;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s;
+}
+
+.card:hover {
+  transform: scale(1.02);
+}
+
+.card img {
+  height: 20rem;
+}
+
+.cardContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .card Button {
   font-weight: bold;
   font-size: medium;
+}
+
+#basic-menu .counter {
+  padding-inline: 1rem;
+}
+
+#basic-menu li {
+  cursor: default;
+}
+
+#basic-menu li:hover {
+  background-color: transparent;
+}
+
+#basic-menu .goToCart a {
+  margin-top: 12px;
 }

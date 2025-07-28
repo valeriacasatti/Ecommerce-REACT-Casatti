@@ -10,31 +10,35 @@ import { getDoc, collection, doc } from "firebase/firestore";
 const ItemDetailContainer = () => {
   const { addToCart, getQuantityById } = useContext(CartContext);
 
-  const [items, setItems] = useState({});
+  const [item, setItem] = useState({});
 
   const { id } = useParams();
 
-  const totalQuantity = getQuantityById(id);
+  const quantityInCart = getQuantityById(id);
 
   useEffect(() => {
     let productsCollection = collection(db, "products");
 
     let productRef = doc(productsCollection, id);
     getDoc(productRef).then((res) => {
-      setItems({ ...res.data(), id: res.id });
+      setItem({ ...res.data(), id: res.id });
     });
   }, [id]);
 
   const onAdd = (cantidad) => {
-    let productCart = { ...items, quantity: cantidad };
-    addToCart(productCart);
-
-    toast.success(`${items.title} added to cart`, {});
+    let productCart = { ...item, quantity: cantidad };
+    const result = addToCart(productCart);
+    if (result.success) {
+      toast.success(result.message, {});
+    } else {
+      toast.error(result.message, {});
+    }
   };
 
   return (
     <>
-      <ItemDetail items={items} onAdd={onAdd} initial={totalQuantity} />
+      <ItemDetail item={item} onAdd={onAdd} quantityInCart={quantityInCart} />
+
       <ToastContainer
         position="bottom-right"
         autoClose={2000}

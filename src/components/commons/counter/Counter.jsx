@@ -1,6 +1,7 @@
+/* eslint-disable react/prop-types */
 import "./Counter.css";
-import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import AddIcon from "@mui/icons-material/Add";
+import RemoveIcon from "@mui/icons-material/Remove";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import { ThemeProvider } from "@emotion/react";
 import ThemeConfig from "../../themeConfig/ThemeConfig";
@@ -12,25 +13,13 @@ const Counter = ({ contador, sumar, restar, onAdd }) => {
       <ThemeProvider theme={ThemeConfig}>
         <CssBaseline />
         <Box className="counter">
-          <h6>{contador}</h6>
-          <Button
-            onClick={sumar}
-            color="secondary"
-            size="small"
-            variant="elevated"
-          >
-            <KeyboardArrowUpIcon fontSize="small" />
+          <Button onClick={sumar}>
+            <AddIcon fontSize="small" />
           </Button>
-          <Button
-            onClick={restar}
-            color="secondary"
-            size="small"
-            variant="elevated"
-          >
-            <KeyboardArrowDownIcon fontSize="small" />
+          <h5>{contador}</h5>
+          <Button onClick={restar}>
+            <RemoveIcon fontSize="small" />
           </Button>
-        </Box>
-        <Box>
           <IconButton
             onClick={() => onAdd(contador)}
             color="primary"

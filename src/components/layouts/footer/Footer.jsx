@@ -9,12 +9,18 @@ const Footer = () => {
       <footer>
         <ul>
           <li className="ulTitle">navigate</li>
-          <li>home</li>
-          <li>catalog</li>
-          <li>cart</li>
+          <Link to="/">
+            <li>home</li>
+          </Link>
+          <Link to="/catalog">
+            <li>catalog</li>
+          </Link>
+          <Link to="/cart">
+            <li>cart</li>
+          </Link>
           {userRol === "admin" && (
             <Link to="dashboard" className="dashboard">
-              <li>admin</li>
+              <li>dashboard</li>
             </Link>
           )}
         </ul>

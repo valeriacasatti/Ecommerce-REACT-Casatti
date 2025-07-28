@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "./CartEmpty.css";
 import ThemeConfig from "../../themeConfig/ThemeConfig";
+
 const CartEmpty = () => {
   toast.warning("CART IS EMPTY!");
   return (
@@ -10,11 +11,10 @@ const CartEmpty = () => {
       <CssBaseline />
 
       <Box className="cartEmpty">
-        <h2>cart is empty!</h2>
-        <h2>🥺</h2>
-        <Link to="/catalog">
-          <Button>go to catalog</Button>
-        </Link>
+        <h2>cart is empty! 🥺</h2>
+        <Button component={Link} to="/catalog">
+          go to catalog
+        </Button>
         <ToastContainer
           position="bottom-right"
           autoClose={2000}

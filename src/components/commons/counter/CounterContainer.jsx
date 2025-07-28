@@ -1,15 +1,18 @@
+/* eslint-disable react/prop-types */
 import { useState } from "react";
 import Counter from "./Counter";
-import { ToastContainer, toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 
-const CounterContainer = ({ stock, onAdd, initial = 1 }) => {
-  const [contador, setContador] = useState(initial);
+const CounterContainer = ({ itemStock, onAdd, quantityInCart }) => {
+  const availableQuantity = itemStock - quantityInCart;
+  const [contador, setContador] = useState(1);
 
   const sumar = () => {
-    contador < stock
+    contador < availableQuantity
       ? setContador(contador + 1)
-      : toast.error(`Solo tenemos ${stock} unidades!`);
+      : toast.error("you have reached the maximum number of units available");
   };
+
   const restar = () => {
     contador > 1 && setContador(contador - 1);
   };

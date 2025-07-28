@@ -1,16 +1,18 @@
-.frontPage {
-  margin-top: 12rem;
-  margin-bottom: 6rem;
+.frontPage,
+.endPurchase {
+  margin-top: 9rem;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-img {
+.frontPage img,
+.endPurchase img {
   height: 27rem;
 }
 
-.frontPageText {
+.frontPageText,
+.endPurchaseText {
   padding-left: 3rem;
   width: 40%;
 }
@@ -22,12 +24,20 @@ img {
   padding-bottom: 3rem;
 }
 
-.frontPageText p {
-  font-size: large;
-}
-
-.frontPageText Button {
+.frontPageText Button,
+.endPurchase Button {
   margin-top: 3rem;
   font-weight: bold;
   font-size: large;
+}
+
+/* PURCHASE COMPLETED */
+.endPurchase h2 {
+  text-transform: uppercase;
+  padding-bottom: 1rem;
+}
+
+.endPurchase h5 span {
+  background-color: #222222;
+  color: #e91e63;
 }

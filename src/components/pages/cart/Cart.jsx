@@ -1,11 +1,11 @@
+/* eslint-disable react/prop-types */
 import { Box, Button, CssBaseline, ThemeProvider } from "@mui/material";
 import CartProduct from "../../commons/cartProduct/CartProduct";
 import "./Cart.css";
 import ThemeConfig from "../../themeConfig/ThemeConfig";
-import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
 import { Link } from "react-router-dom";
 
-const Cart = ({ cart, handleClearCart, total }) => {
+const Cart = ({ cart, handleClearCart, handleDeleteById, total }) => {
   return (
     <>
       <ThemeProvider theme={ThemeConfig}>
@@ -20,15 +20,21 @@ const Cart = ({ cart, handleClearCart, total }) => {
         </Box>
 
         {cart.map((item) => {
-          return <CartProduct key={item.id} item={item} />;
+          return (
+            <CartProduct
+              key={item.id}
+              item={item}
+              handleDeleteById={handleDeleteById}
+            />
+          );
         })}
 
         <Box className="totalCart">
           <h2 className="total">total</h2>
           <h4>total: ${total}</h4>
-          <Link to="/checkout">
-            <Button>conclude purchase</Button>
-          </Link>
+          <Button component={Link} to="/checkout" variant="outlined">
+            conclude purchase
+          </Button>
         </Box>
       </ThemeProvider>
     </>

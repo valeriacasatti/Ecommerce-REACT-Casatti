@@ -1,44 +1,83 @@
-import { createContext, useState } from "react";
-import { ToastContainer, toast } from "react-toastify";
+/* eslint-disable react/prop-types */
+import { createContext, useEffect, useState } from "react";
+import { toast, ToastContainer } from "react-toastify";
 
 export const CartContext = createContext();
 
 const CartContextProvider = ({ children }) => {
-  const [cart, setCart] = useState([]);
+  // save cart in local storage
+  const [cart, setCart] = useState(() => {
+    const savedCart = localStorage.getItem("cart");
+    return savedCart ? JSON.parse(savedCart) : [];
+  });
 
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }, [cart]);
+
+  // add items to cart
   const addToCart = (item) => {
-    const existe = isInCart(item.id);
+    const exists = cart.find((el) => item.id === el.id);
 
-    if (existe) {
-      let newArray = cart.map((elemento) => {
-        if (elemento.id === item.id) {
-          return { ...elemento, quantity: item.quantity };
-        } else {
-          return elemento;
-        }
-      });
+    // if exists in cart, update quantity
+    if (exists) {
+      const newQuantity = item.quantity + exists.quantity;
 
-      setCart(newArray);
+      // if new quantity is less than or equal to stock, update quantity
+      if (newQuantity <= item.stock) {
+        exists.quantity = newQuantity;
+        setCart([...cart]);
+        return {
+          success: true,
+          message: `${newQuantity} units of ${item.title} added to cart successfully`,
+        };
+        // if new quantity exceeds stock
+      } else {
+        return {
+          success: false,
+          message: `we only have ${
+            item.stock - exists.quantity
+          } units left of ${item.title}`,
+        };
+      }
+
+      // if not exists in cart
     } else {
-      setCart([...cart, item]);
+      // and quantity is less than or equal to stock, add to cart
+      if (item.quantity <= item.stock) {
+        setCart([...cart, { ...item }]);
+        return {
+          success: true,
+          message: `${item.title} added to cart successfully`,
+        };
+        // if quantity exceeds stock
+      } else {
+        return {
+          success: false,
+          message: `you can't add ${item.quantity}, we only have ${item.stock} units in stock`,
+        };
+      }
     }
   };
 
+  // clear cart
   const clearCart = () => {
     setCart([]);
   };
 
-  const deleteById = (id) => {
+  // delete item by id
+  const deleteById = async (id) => {
     let newArray = cart.filter((item) => item.id !== id);
     setCart(newArray);
-    toast.error(`removed from cart!`);
   };
 
+  // exists item in cart?
   const isInCart = (id) => {
     let exist = cart.some((item) => item.id === id);
     return exist;
   };
 
+  // total cart amount
   const getTotalPrice = () => {
     let total = cart.reduce((acc, elemento) => {
       return acc + elemento.price * elemento.quantity;
@@ -46,6 +85,7 @@ const CartContextProvider = ({ children }) => {
     return total;
   };
 
+  // total quantity of items in cart
   const getTotalQuantity = () => {
     let total = cart.reduce((acc, elemento) => {
       return acc + elemento.quantity;
@@ -53,9 +93,35 @@ const CartContextProvider = ({ children }) => {
     return total;
   };
 
+  // get total quantity of item in cart
   const getQuantityById = (id) => {
     let product = cart.find((elemento) => elemento.id === id);
-    return product?.quantity;
+    return product ? product.quantity : 0;
+  };
+
+  // increase quantity
+  const increaseQuantity = (id) => {
+    setCart((prevCart) => {
+      const item = prevCart.find((item) => item.id === id);
+
+      if (item.quantity >= item.stock) {
+        toast.error(`We only have ${item.stock} units of ${item.title}`);
+        return prevCart;
+      }
+
+      return prevCart.map((item) =>
+        item.id === id ? { ...item, quantity: item.quantity + 1 } : item
+      );
+    });
+  };
+
+  // decrease quantity
+  const decreaseQuantity = (id) => {
+    setCart((prevCart) =>
+      prevCart.map((item) =>
+        item.id === id ? { ...item, quantity: item.quantity - 1 } : item
+      )
+    );
   };
 
   let data = {
@@ -63,10 +129,12 @@ const CartContextProvider = ({ children }) => {
     addToCart,
     clearCart,
     deleteById,
+    isInCart,
     getTotalPrice,
     getTotalQuantity,
     getQuantityById,
-    isInCart,
+    increaseQuantity,
+    decreaseQuantity,
   };
 
   return (

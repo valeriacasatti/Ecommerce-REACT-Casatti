@@ -1,89 +1,83 @@
+/* eslint-disable react/prop-types */
 import { ThemeProvider } from "@emotion/react";
 import {
   Box,
   Button,
   Card,
-  CardActionArea,
   CardContent,
   CardMedia,
   CssBaseline,
+  Tooltip,
   Typography,
 } from "@mui/material";
-import ClearIcon from "@mui/icons-material/Clear";
-import ThemeConfig from "../../themeConfig/ThemeConfig";
-import { useContext } from "react";
-import { CartContext } from "../../../context/CartContext";
-import { Link } from "react-router-dom";
 
-const CartProduct = ({ item }) => {
-  const { deleteById } = useContext(CartContext);
+import ThemeConfig from "../../themeConfig/ThemeConfig";
+import { Link } from "react-router-dom";
+import { CartContext } from "../../../context/CartContext";
+import { useContext } from "react";
+
+import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
+import AddIcon from "@mui/icons-material/Add";
+import RemoveIcon from "@mui/icons-material/Remove";
+
+const CartProduct = ({ item, handleDeleteById }) => {
+  const { increaseQuantity, decreaseQuantity } = useContext(CartContext);
+
   return (
     <>
       <ThemeProvider theme={ThemeConfig}>
         <CssBaseline />
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "space-between",
-            height: 200,
-            borderRadius: "0%",
-            mr: 10,
-            mb: 5,
-          }}
-        >
-          <Card
-            variant="outlined"
-            sx={{
-              width: "1000%",
-              height: 200,
-              borderRadius: "0%",
-              display: "flex",
-              ml: 13,
-              mb: 5,
-            }}
-          >
-            <CardActionArea sx={{ display: "flex" }}>
-              <Link to={`/itemDetail/${item.id}`}>
-                <CardMedia
-                  component="img"
-                  height="100"
-                  image={item.img}
-                  alt={item.title}
-                  sx={{ width: 200 }}
-                ></CardMedia>
-              </Link>
+        <Card variant="outlined" className="itemCard">
+          <Box sx={{ display: "flex", flexGrow: 1 }}>
+            {/* img */}
+            <Box className="imgContainer">
+              <Tooltip title="View product" placement="left">
+                <Link to={`/itemDetail/${item.id}`}>
+                  <CardMedia
+                    component="img"
+                    image={item.img}
+                    alt={item.title}
+                  ></CardMedia>
+                </Link>
+              </Tooltip>
+            </Box>
 
-              <CardContent sx={{ flex: "1 0 auto" }}>
-                <Typography
-                  sx={{ display: "flex", pl: 1, pb: 1 }}
-                  gutterBottom
-                  variant="h6"
-                  component="div"
-                  textTransform={"uppercase"}
-                >
-                  {item.title}
-                </Typography>
-                <Typography
-                  sx={{ display: "flex", pl: 1, pb: 5 }}
-                  variant="body2"
-                  color="text.secondary"
-                >
-                  ${item.price}
-                </Typography>
-                <Typography
-                  sx={{ display: "flex", pl: 1, pb: 1 }}
-                  variant="body2"
-                  color="text.secondary"
-                >
-                  total: {item.quantity}
-                </Typography>
-              </CardContent>
-            </CardActionArea>
-          </Card>
-          <Button onClick={() => deleteById(item.id)} color="secondary">
-            <ClearIcon fontSize="small" />
-          </Button>
-        </Box>
+            {/* item details */}
+            <CardContent className="itemCardContent">
+              <Typography variant="h6">{item.title}</Typography>
+              <Typography variant="body2" color="text.secondary">
+                unit price: ${item.price}
+              </Typography>
+
+              {/* manage quantity */}
+              <Box>
+                <Button onClick={() => increaseQuantity(item.id)}>
+                  <AddIcon fontSize="small" />
+                </Button>
+
+                <span>{item.quantity}</span>
+
+                {item.quantity === 1 ? (
+                  <Button onClick={() => handleDeleteById(item.id)}>
+                    <DeleteOutlinedIcon fontSize="small" />
+                  </Button>
+                ) : (
+                  <Button onClick={() => decreaseQuantity(item.id)}>
+                    <RemoveIcon fontSize="small" />
+                  </Button>
+                )}
+              </Box>
+
+              <Typography
+                variant="body1"
+                color="text.secondary"
+                textTransform="uppercase"
+              >
+                total price: ${item.quantity * item.price}
+              </Typography>
+            </CardContent>
+          </Box>
+        </Card>
       </ThemeProvider>
     </>
   );

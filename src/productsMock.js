@@ -1,6 +1,7 @@
 export let products = [
   //TOPS
   {
+    id: "1",
     title: "Body Nebula",
     price: 9800,
     stock: 5,
@@ -10,6 +11,7 @@ export let products = [
   },
 
   {
+    id: "2",
     title: "Hoodie Galaxy",
     price: 13000,
     stock: 3,
@@ -19,24 +21,27 @@ export let products = [
   },
 
   {
+    id: "3",
     title: "Corset Venus",
     price: 10200,
-    stock: 5,
+    stock: 0,
     description: "black corset with thin straps",
     img: "https://res.cloudinary.com/dqrgdohtt/image/upload/v1687800304/corsetVenus_hsuwrd.jpg",
     category: "top",
   },
 
   {
+    id: "4",
     title: "Star Jacket",
     price: 16200,
-    stock: 5,
+    stock: 3,
     description: "crop black leather jacket with front pockets",
     img: "https://res.cloudinary.com/dqrgdohtt/image/upload/v1687800306/starJacket_oyqccr.jpg",
     category: "top",
   },
 
   {
+    id: "5",
     title: "Moonlight Blazer",
     price: 17000,
     stock: 5,
@@ -46,6 +51,7 @@ export let products = [
   },
 
   {
+    id: "6",
     title: "Top Mars",
     price: 8600,
     stock: 5,
@@ -55,6 +61,7 @@ export let products = [
   },
 
   {
+    id: "7",
     title: "Body Rocket",
     price: 9300,
     stock: 5,
@@ -64,6 +71,7 @@ export let products = [
   },
 
   {
+    id: "8",
     title: "Space Shirt",
     price: 9800,
     stock: 8,
@@ -72,6 +80,7 @@ export let products = [
     category: "top",
   },
   {
+    id: "9",
     title: "Rocket Jacket",
     price: 18700,
     stock: 2,
@@ -79,8 +88,10 @@ export let products = [
     img: "https://res.cloudinary.com/dqrgdohtt/image/upload/v1689031595/products/rocketJacket_yqw3em.jpg",
     category: "top",
   },
+
   //BOTTOMS
   {
+    id: "10",
     title: "Sky Skirt",
     price: 11000,
     stock: 5,
@@ -90,15 +101,17 @@ export let products = [
   },
 
   {
+    id: "11",
     title: "Skirt Universe",
     price: 11800,
-    stock: 5,
+    stock: 0,
     description: "yellow sequin skirt with black lines",
     img: "https://res.cloudinary.com/dqrgdohtt/image/upload/v1687800306/skirtUniverse_qvknf0.jpg",
     category: "bottom",
   },
 
   {
+    id: "12",
     title: "Saturn Pants",
     price: 14500,
     stock: 5,
@@ -108,6 +121,7 @@ export let products = [
   },
 
   {
+    id: "13",
     title: "Cosmo Pants",
     price: 13800,
     stock: 7,
@@ -117,6 +131,7 @@ export let products = [
   },
 
   {
+    id: "14",
     title: "Asteroid Skirt",
     price: 10500,
     stock: 5,
@@ -126,6 +141,7 @@ export let products = [
   },
 
   {
+    id: "15",
     title: "Rocket Pants",
     price: 12000,
     stock: 5,
@@ -135,6 +151,7 @@ export let products = [
   },
 
   {
+    id: "16",
     title: "Sun Skirt",
     price: 10900,
     stock: 3,
@@ -144,6 +161,7 @@ export let products = [
   },
 
   {
+    id: "17",
     title: "Meteorite Pants",
     price: 13000,
     stock: 5,
@@ -153,6 +171,7 @@ export let products = [
   },
 
   {
+    id: "18",
     title: "Mini Stardust",
     price: 10500,
     stock: 4,
@@ -160,8 +179,10 @@ export let products = [
     img: "https://res.cloudinary.com/dqrgdohtt/image/upload/v1689031594/products/miniStardust_h3xmtr.jpg",
     category: "bottom",
   },
+
   //FULLS
   {
+    id: "19",
     title: "Cosmo Dress",
     price: 14100,
     stock: 8,
@@ -172,6 +193,7 @@ export let products = [
   },
 
   {
+    id: "20",
     title: "Rocket Dress",
     price: 17500,
     stock: 5,
@@ -182,6 +204,7 @@ export let products = [
   },
 
   {
+    id: "21",
     title: "Set Satellite",
     price: 18000,
     stock: 4,
@@ -192,6 +215,7 @@ export let products = [
   },
 
   {
+    id: "22",
     title: "Set Universe",
     price: 19500,
     stock: 5,
@@ -202,6 +226,7 @@ export let products = [
   },
 
   {
+    id: "23",
     title: "Sunlight Dress",
     price: 15000,
     stock: 3,
@@ -212,6 +237,7 @@ export let products = [
   },
 
   {
+    id: "24",
     title: "Star Dress",
     price: 15900,
     stock: 5,
@@ -222,6 +248,7 @@ export let products = [
   },
 
   {
+    id: "25",
     title: "Moon Set",
     price: 21800,
     stock: 2,
@@ -232,6 +259,7 @@ export let products = [
   },
 
   {
+    id: "26",
     title: "Catsuit Midnight",
     price: 16700,
     stock: 6,
@@ -242,6 +270,7 @@ export let products = [
   },
 
   {
+    id: "27",
     title: "Cosmo Set",
     price: 19800,
     stock: 3,

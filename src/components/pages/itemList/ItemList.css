@@ -9,12 +9,22 @@
   text-transform: uppercase;
   font-size: xx-large;
 }
-.itemTitle h6 {
-  text-transform: lowercase;
+
+.itemTitle a {
+  text-decoration: none;
+  color: #e91e63;
 }
 
 .spinner {
   padding-block: 10rem;
   margin-top: 8rem;
   text-align: center;
+}
+
+.itemList {
+  padding-inline: 40px;
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
 }
